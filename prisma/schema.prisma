@@ -10,11 +10,25 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model Mail {
+    id          String      @id @default(cuid())
 
-    @@index([name])
+    html        String
+    content     String
+
+    senderEmail String 
+    senderName  String
+    subject     String
+
+    createdAt   DateTime   @default(now())
+    updatedAt   DateTime   @updatedAt
+    expireAt    DateTime
+
+    mailbox      MailBox    @relation(fields: [mailboxOwner], references: [mail])
+    mailboxOwner String     
+}
+
+model MailBox {
+    mail  String  @id
+    mails Mail[]
 }
