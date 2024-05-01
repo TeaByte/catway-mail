@@ -26,7 +26,6 @@ export default function LandingPage() {
         </p>
       </div>
       <MailInput description defaultMail={mail} />
-
       <div className="w-full">
         <Link
           className="bg-primary/40 hover:bg-primary/30 flex w-full flex-col gap-4 rounded-xl p-4 text-white"
