@@ -24,14 +24,13 @@ export default function LandingPage() {
       <LandingPageInput />
       <div className="w-full">
         <Link
-          className="bg-primary/20 hover:bg-primary/10 flex w-full flex-col gap-4 rounded-xl p-4 text-white"
-          href="https://create.t3.gg/en/introduction"
-          target="_blank"
+          className="bg-primary/20 hover:bg-primary/30 flex w-full flex-col gap-4 rounded-xl p-4 text-white"
+          href="/docs"
         >
-          <h3 className="text-2xl font-bold">Documentation →</h3>
+          <h3 className="text-2xl font-bold">API Documentation →</h3>
           <div className="text-lg">
-            Learn more about Create T3 App, the libraries it uses, and how to
-            deploy it.
+            Learn more about Catway MAIL API, it benefits, and how to use it in
+            your needs.
           </div>
         </Link>
       </div>

@@ -15,7 +15,7 @@ export default function TopNav() {
             height={50}
           />
           <h1 className="text-lg font-bold md:text-2xl">
-            CatWay<span className="text-primary hidden md:inline">MAIL</span>
+            CatWay<span className="text-primary">MAIL</span>
           </h1>
         </div>
         {/* <Later /> */}
