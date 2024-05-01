@@ -1,14 +1,7 @@
 import "server-only";
 
 import { db } from "~/server/db";
-
-interface Mail {
-  senderEmail: string;
-  senderName: string;
-  subject: string;
-  content: string;
-  html: string;
-}
+import type { MailData } from "~/types";
 
 export async function getMailData() {
   const mailsInMailBox = await db.mailBox.findUnique({
@@ -43,7 +36,7 @@ export async function getInbox(id: string) {
   return inbox;
 }
 
-export async function __createMail(mailboxOwner: string, mailData: Mail) {
+export async function __createMail(mailboxOwner: string, mailData: MailData) {
   const expireAt = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   const mail = await db.mail.create({
     data: {
@@ -61,7 +54,7 @@ export async function __createMail(mailboxOwner: string, mailData: Mail) {
   return mailbox;
 }
 
-export async function __updateMail(emailSlug: string, mailData: Mail) {
+export async function __updateMail(emailSlug: string, mailData: MailData) {
   const expireAt = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   await db.mailBox.update({
     where: {
@@ -82,7 +75,7 @@ export async function __updateMail(emailSlug: string, mailData: Mail) {
 
 export async function updateOrCreateMail(
   emailSlug: string,
-  mailData: Mail,
+  mailData: MailData,
 ): Promise<void> {
   const existingMailBox = await db.mailBox.findUnique({
     where: {
