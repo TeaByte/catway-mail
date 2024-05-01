@@ -6,10 +6,10 @@ import { Separator } from "~/components/ui/separator";
 export default function TopNav() {
   return (
     <>
-      <nav className="flex items-center justify-between p-4">
+      <nav className="z-40 flex items-center justify-between p-4">
         <Link
           href={"/"}
-          className="hover:text-primary flex items-center gap-2 hover:animate-pulse"
+          className="flex items-center gap-2 hover:animate-pulse hover:text-primary"
         >
           <Image
             title="CatWay cat logo"
