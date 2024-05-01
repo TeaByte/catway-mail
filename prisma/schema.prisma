@@ -24,7 +24,7 @@ model Mail {
     updatedAt   DateTime   @updatedAt
     expireAt    DateTime
 
-    mailbox      MailBox    @relation(fields: [mailboxOwner], references: [mail])
+    mailbox      MailBox    @relation(fields: [mailboxOwner], references: [mail], onDelete: Cascade)
     mailboxOwner String     
 }
 
