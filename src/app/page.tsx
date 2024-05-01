@@ -28,7 +28,7 @@ export default function LandingPage() {
       <MailInput description defaultMail={mail} />
       <div className="w-full">
         <Link
-          className="bg-primary/40 hover:bg-primary/30 flex w-full flex-col gap-4 rounded-xl p-4 text-white"
+          className="hover:bg-primary/20 flex w-full flex-col gap-4 rounded-xl border p-4 text-white"
           href="/docs"
         >
           <h3 className="text-2xl font-bold">API Documentation →</h3>
