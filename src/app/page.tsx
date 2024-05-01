@@ -5,7 +5,6 @@ import Image from "next/image";
 import randomMail from "~/lib/random";
 
 import MailInput from "./_components/mail-input";
-import CopyButton from "~/components/copy-button";
 
 export default function LandingPage() {
   const mail = randomMail() + "@catway.org";
@@ -26,9 +25,8 @@ export default function LandingPage() {
           privacy pounces away without a trace.
         </p>
       </div>
-      <MailInput description defaultMail={mail}>
-        <CopyButton text={mail} />
-      </MailInput>
+      <MailInput description defaultMail={mail} />
+
       <div className="w-full">
         <Link
           className="bg-primary/40 hover:bg-primary/30 flex w-full flex-col gap-4 rounded-xl p-4 text-white"

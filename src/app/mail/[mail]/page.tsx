@@ -2,10 +2,9 @@ interface MailPageProps {
   params: { mail: string };
 }
 
-import { Info } from "lucide-react";
-
-import LandingPageInput from "~/app/_components/mail-input";
-import CopyButton from "~/components/copy-button";
+import { Button } from "~/components/ui/button";
+import MailInput from "~/app/_components/mail-input";
+import { Info, RotateCcw } from "lucide-react";
 
 export default async function MailPage({ params }: MailPageProps) {
   const mail = params.mail + "@catway.org";
@@ -18,10 +17,11 @@ export default async function MailPage({ params }: MailPageProps) {
           privacy pounces away without a trace.
         </p>
       </div>
-      <LandingPageInput defaultMail={mail}>
-        <CopyButton text={mail} />
-      </LandingPageInput>
-
+      <MailInput defaultMail={mail}>
+        <Button type="button" variant="outline">
+          <RotateCcw className="h5 w-5" />
+        </Button>
+      </MailInput>
       <section className="flex w-full flex-col gap-2">
         <p className="flex w-full items-center gap-1 ">
           <Info className="h-4 w-4" />

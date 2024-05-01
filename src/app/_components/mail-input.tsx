@@ -1,12 +1,11 @@
 import { redirect } from "next/navigation";
 
 import { Icon } from "~/components/ui/plus-icon";
-import { Input } from "~/components/ui/input";
-import { Button } from "~/components/ui/button";
 
 import { MousePointerClick } from "lucide-react";
+import MailClintInputs from "./mail-client-inputs";
 
-interface LandingPageInputProps {
+interface MailInputProps {
   children?: React.ReactNode;
   defaultMail: string;
   description?: boolean;
@@ -16,7 +15,7 @@ export default function MailInput({
   children,
   defaultMail,
   description,
-}: LandingPageInputProps) {
+}: MailInputProps) {
   async function serverMailAction(formData: FormData) {
     "use server";
     const rawFormData = {
@@ -42,15 +41,7 @@ export default function MailInput({
           className="flex h-full w-full items-start justify-center"
         >
           <div className="flex w-full gap-1">
-            <Input
-              name="mail"
-              defaultValue={defaultMail}
-              type="email"
-              className="grow"
-            />
-            <Button type="submit" variant="outline">
-              <MousePointerClick />
-            </Button>
+            <MailClintInputs mail={defaultMail} />
             {children}
           </div>
         </form>
