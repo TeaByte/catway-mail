@@ -1,8 +1,11 @@
 import "~/styles/globals.css";
 
-import { Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
 
-const inter = Inter({
+import TopNav from "./_components/top-nav";
+import Footer from "./_components/footer";
+
+const font = Rubik({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -20,7 +23,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <body className={`dark ${font.className}`}>
+        <TopNav />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
