@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
-import { Clipboard, ClipboardCheck, MousePointerClick } from "lucide-react";
+import { Copy, CopyCheck, MousePointerClick } from "lucide-react";
 
 interface MailClintInputsProps {
   mail: string;
@@ -41,9 +41,9 @@ export default function MailClintInputs({ mail }: MailClintInputsProps) {
       </Button>
       <Button type="button" variant="outline" onClick={copy}>
         {copied ? (
-          <ClipboardCheck className="h-5 w-5" />
+          <CopyCheck className="h-5 w-5" />
         ) : (
-          <Clipboard className="h-5 w-5" />
+          <Copy className="h-5 w-5" />
         )}
       </Button>
     </>
