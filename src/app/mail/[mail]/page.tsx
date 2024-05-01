@@ -2,12 +2,111 @@ interface MailPageProps {
   params: { mail: string };
 }
 
+import { Info } from "lucide-react";
+
+import LandingPageInput from "~/app/_components/mail-input";
+import CopyButton from "~/components/copy-button";
+
 export default async function MailPage({ params }: MailPageProps) {
   const mail = params.mail + "@catway.org";
 
   return (
     <main className="mx-4 mb-14 mt-6 flex flex-col items-center justify-center gap-6 md:mx-[200px] md:mt-10 lg:mx-[300px] xl:mx-[400px] 2xl:mx-[700px]">
-      <p>{mail}</p>
+      <div className="flex flex-col items-center gap-2">
+        <p className="text-center text-lg font-semibold">
+          Purring into your inbox with temporary addresses, ensuring your
+          privacy pounces away without a trace.
+        </p>
+      </div>
+      <LandingPageInput defaultMail={mail}>
+        <CopyButton text={mail} />
+      </LandingPageInput>
+
+      <section className="flex w-full flex-col gap-2">
+        <p className="flex w-full items-center gap-1 ">
+          <Info className="h-4 w-4" />
+          <span className="text-start text-sm font-semibold">
+            Total Emails: 0
+          </span>
+        </p>
+        <div className="bg-primary/40 hover:bg-primary/30 rounded-md border p-4">
+          <div className="flex items-start justify-between">
+            <div className="flex flex-col">
+              <span className="truncate font-bold">example@thing.com</span>
+              <span className="truncate text-sm">Yazan Bytes</span>
+            </div>
+            <span className="text-sm font-semibold">10/12/2022</span>
+          </div>
+          <p className="truncate pt-2 text-lg font-extralight">
+            Your code is 123456
+          </p>
+        </div>
+        {/*  */}
+        <div className="bg-primary/40 hover:bg-primary/30 rounded-md border p-4">
+          <div className="flex items-start justify-between">
+            <div className="flex flex-col">
+              <span className="truncate font-bold">example@thing.com</span>
+              <span className="truncate text-sm">Yazan Bytes</span>
+            </div>
+            <span className="text-sm font-semibold">10/12/2022</span>
+          </div>
+          <p className="truncate pt-2 text-lg font-extralight">
+            Your code is 123456
+          </p>
+        </div>
+        {/*  */}
+        <div className="bg-primary/40 hover:bg-primary/30 rounded-md border p-4">
+          <div className="flex items-start justify-between">
+            <div className="flex flex-col">
+              <span className="truncate font-bold">example@thing.com</span>
+              <span className="truncate text-sm">Yazan Bytes</span>
+            </div>
+            <span className="text-sm font-semibold">10/12/2022</span>
+          </div>
+          <p className="truncate pt-2 text-lg font-extralight">
+            Your code is 123456
+          </p>
+        </div>
+        {/*  */}
+        <div className="bg-primary/40 hover:bg-primary/30 rounded-md border p-4">
+          <div className="flex items-start justify-between">
+            <div className="flex flex-col">
+              <span className="truncate font-bold">example@thing.com</span>
+              <span className="truncate text-sm">Yazan Bytes</span>
+            </div>
+            <span className="text-sm font-semibold">10/12/2022</span>
+          </div>
+          <p className="truncate pt-2 text-lg font-extralight">
+            Your code is 123456
+          </p>
+        </div>
+        {/*  */}
+        <div className="bg-primary/40 hover:bg-primary/30 rounded-md border p-4">
+          <div className="flex items-start justify-between">
+            <div className="flex flex-col">
+              <span className="truncate font-bold">example@thing.com</span>
+              <span className="truncate text-sm">Yazan Bytes</span>
+            </div>
+            <span className="text-sm font-semibold">10/12/2022</span>
+          </div>
+          <p className="truncate pt-2 text-lg font-extralight">
+            Your code is 123456
+          </p>
+        </div>
+        {/*  */}
+        <div className="bg-primary/40 hover:bg-primary/30 rounded-md border p-4">
+          <div className="flex items-start justify-between">
+            <div className="flex flex-col">
+              <span className="truncate font-bold">example@thing.com</span>
+              <span className="truncate text-sm">Yazan Bytes</span>
+            </div>
+            <span className="text-sm font-semibold">10/12/2022</span>
+          </div>
+          <p className="truncate pt-2 text-lg font-extralight">
+            Your code is 123456
+          </p>
+        </div>
+      </section>
     </main>
   );
 }

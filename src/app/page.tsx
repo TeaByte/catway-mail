@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import randomMail from "~/lib/random";
 
-import LandingPageInput from "./_components/mail-input";
+import MailInput from "./_components/mail-input";
 import CopyButton from "~/components/copy-button";
 
 export default function LandingPage() {
@@ -26,12 +26,12 @@ export default function LandingPage() {
           privacy pounces away without a trace.
         </p>
       </div>
-      <LandingPageInput defaultMail={mail}>
+      <MailInput description defaultMail={mail}>
         <CopyButton text={mail} />
-      </LandingPageInput>
+      </MailInput>
       <div className="w-full">
         <Link
-          className="bg-primary/20 hover:bg-primary/30 flex w-full flex-col gap-4 rounded-xl p-4 text-white"
+          className="bg-primary/40 hover:bg-primary/30 flex w-full flex-col gap-4 rounded-xl p-4 text-white"
           href="/docs"
         >
           <h3 className="text-2xl font-bold">API Documentation →</h3>
