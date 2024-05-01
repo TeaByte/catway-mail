@@ -1,7 +1,4 @@
-export const dynamic = "force-dynamic";
-
 import { redirect } from "next/navigation";
-import randomMail from "~/lib/random";
 
 import { Icon } from "~/components/ui/plus-icon";
 import { Input } from "~/components/ui/input";
@@ -9,9 +6,15 @@ import { Button } from "~/components/ui/button";
 
 import { MousePointerClick } from "lucide-react";
 
-export default function LandingPageInput() {
-  const mail = randomMail() + "@catway.org";
+interface LandingPageInputProps {
+  children?: React.ReactNode;
+  defaultMail: string;
+}
 
+export default function LandingPageInput({
+  children,
+  defaultMail,
+}: LandingPageInputProps) {
   async function serverMailAction(formData: FormData) {
     "use server";
     const rawFormData = {
@@ -36,16 +39,17 @@ export default function LandingPageInput() {
           action={serverMailAction}
           className="flex h-full w-full items-start justify-center"
         >
-          <div className="flex gap-1">
+          <div className="flex w-full gap-1">
             <Input
               name="mail"
-              defaultValue={mail}
+              defaultValue={defaultMail}
               type="email"
-              className="w-60"
+              className="grow"
             />
             <Button type="submit" variant="outline">
               <MousePointerClick />
             </Button>
+            {children}
           </div>
         </form>
       </div>

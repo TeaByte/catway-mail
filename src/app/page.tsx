@@ -1,9 +1,14 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import Image from "next/image";
+import randomMail from "~/lib/random";
 
-import LandingPageInput from "./_components/landing-page-input";
+import LandingPageInput from "./_components/mail-input";
+import CopyButton from "~/components/copy-button";
 
 export default function LandingPage() {
+  const mail = randomMail() + "@catway.org";
   return (
     <main className="mx-4 mb-14 mt-6 flex flex-col items-center justify-center gap-6 md:mx-[200px] md:mt-10 lg:mx-[300px] xl:mx-[400px] 2xl:mx-[700px]">
       <div className="flex flex-col items-center gap-2">
@@ -21,7 +26,9 @@ export default function LandingPage() {
           privacy pounces away without a trace.
         </p>
       </div>
-      <LandingPageInput />
+      <LandingPageInput defaultMail={mail}>
+        <CopyButton text={mail} />
+      </LandingPageInput>
       <div className="w-full">
         <Link
           className="bg-primary/20 hover:bg-primary/30 flex w-full flex-col gap-4 rounded-xl p-4 text-white"
