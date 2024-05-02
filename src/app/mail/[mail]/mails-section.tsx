@@ -41,7 +41,7 @@ export default function MailSection({ mailData, mailSlug }: MailSectionProps) {
     const response = await fetch(`/api/${mailSlug}/email`);
 
     if (!response.ok) {
-      throw new Error(response.statusText);
+      console.error(response.statusText);
     }
 
     const data = await response.json();
