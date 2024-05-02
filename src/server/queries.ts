@@ -43,7 +43,7 @@ export async function __createMail(mailboxOwner: string, mailData: MailData) {
       mail: mailboxOwner,
     },
   });
-  const mail = await db.mail.create({
+  await db.mail.create({
     data: {
       ...mailData,
       mailboxOwner,
@@ -90,4 +90,14 @@ export async function updateOrCreateMail(
   } else {
     await __createMail(emailSlug, mailData);
   }
+}
+
+export async function deleteExpiredMails() {
+  await db.mail.deleteMany({
+    where: {
+      expireAt: {
+        lt: new Date(),
+      },
+    },
+  });
 }
