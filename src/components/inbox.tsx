@@ -8,7 +8,7 @@ interface InboxProps {
 export default async function Inbox({ inboxId }: InboxProps) {
   const mailData = await getInbox(inboxId);
   return (
-    <section className="mx-4 mb-14 mt-6 flex flex-col items-center justify-center gap-6 md:mx-[200px] md:mt-10 lg:mx-[300px] xl:mx-[400px] 2xl:mx-[700px]">
+    <section className="mx-4 mb-14 mt-6 flex flex-col items-center justify-center gap-6 lg:container lg:mx-auto">
       {mailData ? (
         <>
           <div className="flex flex-col items-center gap-2">

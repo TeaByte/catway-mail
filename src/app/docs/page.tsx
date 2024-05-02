@@ -53,9 +53,9 @@ function DataBox({ children }: { children: React.ReactNode }) {
 
 export default function Docs() {
   return (
-    <main className="mx-4 mb-14 mt-6 flex flex-col items-center justify-center gap-6 md:mx-[200px] md:mt-10 lg:mx-[300px] xl:mx-[400px] 2xl:mx-[700px]">
+    <main className="container mx-auto mb-14 mt-6 flex flex-col items-center justify-center gap-6 lg:w-1/2">
       <div className="flex flex-col items-center gap-2">
-        <p className="text-center text-lg font-semibold">
+        <p className="text-center text-lg font-semibold lg:w-[60%]">
           Purring into your inbox with temporary addresses, ensuring your
           privacy pounces away without a trace.
         </p>

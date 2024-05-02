@@ -50,7 +50,7 @@ export default function MailSection({ mailData, mailSlug }: MailSectionProps) {
   }
 
   return (
-    <section className="flex w-full flex-col gap-2">
+    <section className="mt-4 flex w-full flex-col gap-2 lg:w-1/2">
       {md ? (
         <>
           <p className="flex w-full items-center gap-1 ">
