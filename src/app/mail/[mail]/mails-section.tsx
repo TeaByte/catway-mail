@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import MailCard from "./mail-card";
-import { Info, RotateCcw } from "lucide-react";
+import { Info, RotateCw } from "lucide-react";
 
 interface MailSectionProps {
   mailData:
@@ -21,7 +21,7 @@ interface MailSectionProps {
         mail: string;
       })
     | null;
-    mailSlug: string
+  mailSlug: string;
 }
 
 export default function MailSection({ mailData, mailSlug }: MailSectionProps) {
@@ -73,7 +73,7 @@ export default function MailSection({ mailData, mailSlug }: MailSectionProps) {
           </p>
           <div className="rounded-md border p-4 hover:bg-primary/20">
             <div className="flex items-center justify-center gap-2">
-              <RotateCcw className="h-8 w-8 animate-spin" />
+              <RotateCw className="h-8 w-8 animate-spin" />
               <p>Refreshing in 10 seconds</p>
             </div>
           </div>

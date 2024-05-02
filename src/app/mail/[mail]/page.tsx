@@ -1,9 +1,6 @@
 import { getMailData } from "~/server/queries";
 
-import { Button } from "~/components/ui/button";
-import MailCard from "./mail-card";
 import MailInput from "~/app/_components/mail-input";
-import { Info, RotateCcw } from "lucide-react";
 import MailSection from "./mails-section";
 
 interface MailPageProps {

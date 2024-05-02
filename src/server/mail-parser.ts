@@ -9,14 +9,17 @@ const mailboxPath = "/var/mail/root";
 let processing = false;
 
 const parserSenderRegex = /"([^"]+)"\s*<([^>]+)>/;
-function extractNameAndEmail(toField: string): { name: string | null; email: string | null } {
+function extractNameAndEmail(toField: string): {
+  name: string | null;
+  email: string | null;
+} {
   const matches: RegExpMatchArray | null = toField.match(parserSenderRegex);
   if (matches && matches.length === 3) {
-      const name: string | undefined = matches[1];
-      const email: string | undefined = matches[2];
-      return { name: name ?? null, email: email ?? null };
+    const name: string | undefined = matches[1];
+    const email: string | undefined = matches[2];
+    return { name: name ?? null, email: email ?? null };
   } else {
-      return { name: null, email: null };
+    return { name: null, email: null };
   }
 }
 
@@ -46,7 +49,9 @@ export async function processMailboxFile() {
             toEmail = parsedEmail.to?.text ?? undefined;
           }
           if (toEmail) {
-            const {name, email} = extractNameAndEmail(parsedEmail.from?.text ?? "");
+            const { name, email } = extractNameAndEmail(
+              parsedEmail.from?.text ?? "",
+            );
             await updateOrCreateMail(toEmail, {
               subject: parsedEmail.subject ?? "No subject",
               content: parsedEmail.textAsHtml
@@ -90,6 +95,3 @@ async function deleteProcessedEmail(emailData: string) {
   // Write the updated content back to the mailbox file
   await fs.promises.writeFile(mailboxPath, newData);
 }
-
-// Function to watch the mailbox file and process it periodically
-
