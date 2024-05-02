@@ -5,9 +5,9 @@ interface APIProps {
   params: { id: string };
 }
 export async function GET(request: NextRequest, { params }: APIProps) {
-  const inbox = await getInbox(params.id);
+  const data = await getInbox(params.id);
 
-  if (!inbox) {
+  if (!data) {
     return NextResponse.json(
       { ok: false, error: "inbox not found" },
       {
@@ -16,5 +16,5 @@ export async function GET(request: NextRequest, { params }: APIProps) {
     );
   }
 
-  return NextResponse.json({ ok: true, inbox });
+  return NextResponse.json({ ok: true, data });
 }

@@ -4,6 +4,7 @@ import { Button } from "~/components/ui/button";
 import MailCard from "./mail-card";
 import MailInput from "~/app/_components/mail-input";
 import { Info, RotateCcw } from "lucide-react";
+import MailSection from "./mails-section";
 
 interface MailPageProps {
   params: { mail: string };
@@ -25,36 +26,7 @@ export default async function MailPage({ params }: MailPageProps) {
           <RotateCcw className="h5 w-5" />
         </Button>
       </MailInput>
-      <section className="flex w-full flex-col gap-2">
-        {mailData ? (
-          <>
-            <p className="flex w-full items-center gap-1 ">
-              <Info className="h-4 w-4" />
-              <span className="text-start text-sm font-semibold">
-                Total Emails: {mailData.mails.length}
-              </span>
-            </p>
-            {mailData.mails.map((mail) => (
-              <MailCard key={mail.id} mailData={mail} />
-            ))}
-          </>
-        ) : (
-          <>
-            <p className="flex w-full items-center gap-1 ">
-              <Info className="h-4 w-4" />
-              <span className="text-start text-sm font-semibold">
-                No emails found yet
-              </span>
-            </p>
-            <div className="rounded-md border p-4 hover:bg-primary/20">
-              <div className="flex items-center justify-center gap-2">
-                <RotateCcw className="h-8 w-8 animate-spin" />
-                <p>Refreshing in 10 seconds</p>
-              </div>
-            </div>
-          </>
-        )}
-      </section>
+      <MailSection mailData={mailData} />
     </main>
   );
 }

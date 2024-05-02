@@ -5,12 +5,14 @@ interface MailCardProps {
   senderEmail: string;
   senderName: string;
   subject: string;
-  createdAt: Date;
+  createdAt: Date | string;
   updatedAt: Date;
   expireAt: Date;
 }
 
 export default function MailCard({ mailData }: { mailData: MailCardProps }) {
+  const createdAt = new Date(mailData.createdAt);
+
   return (
     <Link
       href={`/inbox/${mailData.id}`}
@@ -22,7 +24,7 @@ export default function MailCard({ mailData }: { mailData: MailCardProps }) {
           <span className="truncate text-sm">{mailData.senderName}</span>
         </div>
         <span className="text-sm font-semibold">
-          {mailData.createdAt.toLocaleDateString()}
+          {createdAt.toLocaleDateString()}
         </span>
       </div>
       <p className="truncate pt-2 text-lg font-extralight">
