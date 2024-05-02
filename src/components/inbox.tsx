@@ -11,7 +11,7 @@ export default async function Inbox({ inboxId }: InboxProps) {
     <section className="mx-4 mb-14 mt-6 flex flex-col items-center justify-center gap-6 md:mx-[200px] md:mt-10 lg:mx-[300px] xl:mx-[400px] 2xl:mx-[700px]">
       {mailData ? (
         <>
-          <p>{mailData.createdAt.toLocaleDateString()}</p>
+          <p className="text-xs">{mailData.createdAt.toLocaleDateString()}</p>
           <div className="flex flex-col items-center gap-2">
             <h1 className="text-center text-lg font-bold">
               {mailData.senderEmail}
@@ -20,11 +20,20 @@ export default async function Inbox({ inboxId }: InboxProps) {
               {mailData.senderName}
             </p>
           </div>
-          <p className="text-lg font-semibold">{mailData.subject}</p>
+          <div className="flex w-full flex-col gap-1">
+            <p className="text-sm font-semibold">Subject:</p>
+            <p className="w-full rounded border p-4 text-center text-lg font-semibold">
+              {mailData.subject}
+            </p>
+          </div>
           <div className="flex w-full flex-col gap-1">
             <p className="text-sm font-semibold">Content:</p>
             <div className="flex min-h-56 w-full flex-col items-center justify-center rounded border p-4">
-              {mailData.content}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: mailData.html ? mailData.html : mailData.content,
+                }}
+              ></div>
             </div>
           </div>
         </>
