@@ -21,11 +21,7 @@ export default async function MailPage({ params }: MailPageProps) {
           privacy pounces away without a trace.
         </p>
       </div>
-      <MailInput defaultMail={mail}>
-        <Button type="button" variant="outline">
-          <RotateCcw className="h5 w-5" />
-        </Button>
-      </MailInput>
+      <MailInput defaultMail={mail} />
       <MailSection mailData={mailData} />
     </main>
   );
