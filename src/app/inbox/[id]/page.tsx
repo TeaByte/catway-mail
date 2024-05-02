@@ -1,9 +1,9 @@
 import Inbox from "~/components/inbox";
 
-export default function PhotoPage({
-  params: { id: photoId },
+export default function InboxPage({
+  params: { id: inboxId },
 }: {
   params: { id: string };
 }) {
-  return <Inbox />;
+  return <Inbox inboxId={inboxId} />;
 }

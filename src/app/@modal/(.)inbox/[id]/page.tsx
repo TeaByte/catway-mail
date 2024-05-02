@@ -1,14 +1,14 @@
 import { Modal } from "./modal";
 import Inbox from "~/components/inbox";
 
-export default function PhotoModal({
-  params: { id: photoId },
+export default function InboxPage({
+  params: { id: inboxId },
 }: {
   params: { id: string };
 }) {
   return (
     <Modal>
-      <Inbox />
+      <Inbox inboxId={inboxId} />
     </Modal>
   );
 }
