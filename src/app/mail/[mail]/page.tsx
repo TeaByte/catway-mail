@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { getMailData } from "~/server/queries";
 
 import { Button } from "~/components/ui/button";
