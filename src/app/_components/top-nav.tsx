@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 
 export default function TopNav() {
@@ -23,7 +24,9 @@ export default function TopNav() {
             CatWay<span className="font-light">MAIL</span>
           </h1>
         </Link>
-        {/* <Later /> */}
+        <Link href={"/docs"}>
+          <Button variant="outline">Docs</Button>
+        </Link>
       </nav>
       <Separator />
     </>
