@@ -1,12 +1,14 @@
 export const dynamic = "force-dynamic";
 
+import {getMailData} from "~/server/queries"
 import Link from "next/link";
 import Image from "next/image";
 import randomMail from "~/lib/random";
 
 import MailInput from "./_components/mail-input";
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const x = await getMailData("!")
   const mail = randomMail() + "@catway.org";
   return (
     <main className="mx-4 mb-14 mt-6 flex flex-col items-center justify-center gap-6 md:mx-[200px] md:mt-10 lg:mx-[300px] xl:mx-[400px] 2xl:mx-[700px]">
