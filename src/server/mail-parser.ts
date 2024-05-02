@@ -47,7 +47,6 @@ export async function processMailboxFile() {
           }
           if (toEmail) {
             const {name, email} = extractNameAndEmail(parsedEmail.from?.text ?? "");
-            console.log(name, email, toEmail)
             await updateOrCreateMail(toEmail, {
               subject: parsedEmail.subject ?? "No subject",
               content: parsedEmail.textAsHtml

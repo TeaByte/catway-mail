@@ -22,7 +22,7 @@ export default async function MailPage({ params }: MailPageProps) {
         </p>
       </div>
       <MailInput defaultMail={mail} />
-      <MailSection mailData={mailData} />
+      <MailSection mailData={mailData} mailSlug={mail} />
     </main>
   );
 }

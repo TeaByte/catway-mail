@@ -6,6 +6,10 @@ interface APIProps {
 }
 
 export async function GET(request: NextRequest, { params }: APIProps) {
+  if(!params.id.includes("@")) {
+    params.id = params.id + "@catway.org"
+  }
+  
   const data = await getMailData(params.id);
 
   if (!data) {

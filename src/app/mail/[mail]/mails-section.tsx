@@ -21,9 +21,10 @@ interface MailSectionProps {
         mail: string;
       })
     | null;
+    mailSlug: string
 }
 
-export default function MailSection({ mailData }: MailSectionProps) {
+export default function MailSection({ mailData, mailSlug }: MailSectionProps) {
   const [md, setMd] = useState(mailData);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function MailSection({ mailData }: MailSectionProps) {
   }, []);
 
   async function refresh() {
-    const response = await fetch(`/api/${mailData?.mail}/email`);
+    const response = await fetch(`/api/${mailSlug}/email`);
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -73,7 +74,7 @@ export default function MailSection({ mailData }: MailSectionProps) {
           <div className="rounded-md border p-4 hover:bg-primary/20">
             <div className="flex items-center justify-center gap-2">
               <RotateCcw className="h-8 w-8 animate-spin" />
-              <p>Refreshing automatically in 10 seconds</p>
+              <p>Refreshing in 10 seconds</p>
             </div>
           </div>
         </>
