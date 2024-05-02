@@ -5,7 +5,7 @@ import { updateOrCreateMail } from "./queries";
 console.log("Running email watcher...");
 
 // Path to the mailbox file
-const mailboxPath: string = "/var/mail/root";
+const mailboxPath = "/var/mail/root";
 let processing = false;
 
 const parserSenderRegex = /"([^"]+)"\s*<([^>]+)>/;
@@ -46,7 +46,7 @@ export async function processMailboxFile() {
             toEmail = parsedEmail.to?.text ?? undefined;
           }
           if (toEmail) {
-            const {name, email} = extractNameAndEmail(parsedEmail.from?.text || "");
+            const {name, email} = extractNameAndEmail(parsedEmail.from?.text ?? "");
             console.log(name, email, toEmail)
             await updateOrCreateMail(toEmail, {
               subject: parsedEmail.subject ?? "No subject",
