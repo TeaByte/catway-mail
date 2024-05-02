@@ -5,11 +5,23 @@ import { updateOrCreateMail } from "./queries";
 console.log("Running email watcher...");
 
 // Path to the mailbox file
-const mailboxPath = "/var/mail/root";
+const mailboxPath: string = "/var/mail/root";
 let processing = false;
 
+const parserSenderRegex = /"([^"]+)"\s*<([^>]+)>/;
+function extractNameAndEmail(toField: string): { name: string | null; email: string | null } {
+  const matches: RegExpMatchArray | null = toField.match(parserSenderRegex);
+  if (matches && matches.length === 3) {
+      const name: string | undefined = matches[1];
+      const email: string | undefined = matches[2];
+      return { name: name ?? null, email: email ?? null };
+  } else {
+      return { name: null, email: null };
+  }
+}
+
 // Function to read and process the mailbox file
-async function processMailboxFile() {
+export async function processMailboxFile() {
   if (!processing) {
     processing = true;
     try {
@@ -20,7 +32,10 @@ async function processMailboxFile() {
         });
       });
 
+      // Split the data into individual email messages
       const emailMessages: string[] = data.split(/^From\s+/m).filter(Boolean);
+
+      // Process each email message
       for (const emailData of emailMessages) {
         try {
           const parsedEmail = await simpleParser(emailData);
@@ -31,17 +46,21 @@ async function processMailboxFile() {
             toEmail = parsedEmail.to?.text ?? undefined;
           }
           if (toEmail) {
+            const {name, email} = extractNameAndEmail(parsedEmail.from?.text || "");
+            console.log(name, email, toEmail)
             await updateOrCreateMail(toEmail, {
               subject: parsedEmail.subject ?? "No subject",
               content: parsedEmail.textAsHtml
                 ? parsedEmail.textAsHtml
                 : parsedEmail.text ?? "No content",
-              senderEmail: parsedEmail.from?.text ?? "No sender",
-              senderName: parsedEmail.from?.text ?? "No sender",
+              senderEmail: email ?? "No sender email",
+              senderName: name ?? "No sender name",
               html: parsedEmail.html || "No html",
             });
+
+            // Delete the processed email from the mailbox file
+            await deleteProcessedEmail(emailData);
           }
-          return parsedEmail;
         } catch (error) {
           if (error instanceof Error) {
             throw new Error(`Error parsing email: ${error.message}`);
@@ -50,8 +69,6 @@ async function processMailboxFile() {
           }
         }
       }
-      // After processing, truncate the mailbox file
-      truncateMailbox();
     } catch (error) {
       if (error instanceof Error) {
         throw new Error(`Unexpected error: ${error.message}`);
@@ -63,24 +80,17 @@ async function processMailboxFile() {
   }
 }
 
-// Function to truncate the mailbox file
-function truncateMailbox() {
-  fs.truncate(mailboxPath, 0, (err) => {
-    if (err) {
-      throw new Error(`Error truncating mailbox file: ${err.message}`);
-    }
-  });
+// Function to delete the processed email from the mailbox file
+async function deleteProcessedEmail(emailData: string) {
+  // Read the content of the mailbox file
+  const currentData: string = await fs.promises.readFile(mailboxPath, "utf8");
+
+  // Replace the processed email content with an empty string
+  const newData: string = currentData.replace(emailData, "");
+
+  // Write the updated content back to the mailbox file
+  await fs.promises.writeFile(mailboxPath, newData);
 }
 
-// Read and process the mailbox file every 2 seconds
-export function processMailboxAndLogResult() {
-  processMailboxFile()
-    .then((result) => {
-      if (result) {
-        console.log(result);
-      } else {
-        console.log("Processing mailbox...");
-      }
-    })
-    .catch((error) => console.error(error));
-}
+// Function to watch the mailbox file and process it periodically
+

@@ -3,9 +3,9 @@ import "server-only";
 import { db } from "~/server/db";
 import type { MailData } from "~/types";
 
-import { processMailboxAndLogResult } from "./mail-parser";
+import { processMailboxFile } from "./mail-parser";
 
-setInterval(processMailboxAndLogResult, 2222);
+setInterval(processMailboxFile, 2000);
 
 export async function getMailData(mailboxOwner: string) {
   const mailsInMailBox = await db.mailBox.findUnique({
