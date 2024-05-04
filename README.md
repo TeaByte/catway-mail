@@ -64,7 +64,7 @@ To set up your own self-hosted temp mail service, follow these steps:
    Add the following line to map emails to the root user:
 
    ```conf
-   @catdns.in  root
+   @your_domain.com  root
    ```
 
    After editing the virtual alias file, apply the changes by running:
