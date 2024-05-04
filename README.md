@@ -1,6 +1,6 @@
-# CatDNS Temp Mail
+# CatWay Temp Mail
 
-Welcome to CatDNS Temp Mail, a simple temporary email service powered by [Postfix](https://www.postfix.org/) mail server and complemented by the T3 Stack for the website.
+CatWay Temp Mail, a simple temporary email service powered by [Postfix](https://www.postfix.org/) mail server and complemented by the [T3 Stack](https://create.t3.gg/) for the website.
 
 ## Getting Started
 
