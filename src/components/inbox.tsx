@@ -30,7 +30,10 @@ export default async function Inbox({ inboxId }: InboxProps) {
             <div className="flex min-h-56 w-full flex-col items-center justify-center rounded border p-4">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: mailData.html ? mailData.html : mailData.content,
+                  __html:
+                    mailData.html !== "No html"
+                      ? mailData.html
+                      : mailData.content,
                 }}
               ></div>
             </div>
