@@ -78,7 +78,7 @@ export default function Docs() {
         description="Retrieve inbox data for a specific inbox ID."
         method="GET"
         parameters="<code>id</code> (string): Inbox ID"
-        exampleUsage="GET /api/clw3xlmkw00bkygiv6vr2gdax/inbox"
+        exampleUsage="GET /api/clw3.../inbox"
         response={`{
   "ok": true,
   "data": { ... }
