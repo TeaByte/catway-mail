@@ -62,11 +62,11 @@ export default function Docs() {
       </div>
       <ApiSection
         title="Mail Data API"
-        endpoint="https://mail.catway.org/api/:email/email"
+        endpoint="/api/:email/email"
         description="Retrieve mail data for a specific email."
         method="GET"
         parameters="<code>email</code> (string): Email address"
-        exampleUsage="GET /api/sadf/email"
+        exampleUsage="GET /api/test123/email"
         response={`{
   "ok": true,
   "data": { ... }
@@ -78,7 +78,7 @@ export default function Docs() {
         description="Retrieve inbox data for a specific inbox ID."
         method="GET"
         parameters="<code>id</code> (string): Inbox ID"
-        exampleUsage="GET /api/:id/inbox"
+        exampleUsage="GET /api/clw3xlmkw00bkygiv6vr2gdax/inbox"
         response={`{
   "ok": true,
   "data": { ... }
