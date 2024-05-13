@@ -74,7 +74,7 @@ export default function MailSection({ mailData, mailSlug }: MailSectionProps) {
           <div className="rounded-md border p-4 hover:bg-primary/20">
             <div className="flex items-center justify-center gap-2">
               <RotateCw className="h-8 w-8 animate-spin" />
-              <p>Refreshing in 10 seconds</p>
+              <p>Refreshing automatically</p>
             </div>
           </div>
         </>

@@ -8,6 +8,10 @@ interface MailPageProps {
 }
 
 export default async function MailPage({ params }: MailPageProps) {
+  if (params.mail.includes("%40")) {
+    params.mail = params.mail.split("%40")[0] ?? params.mail;
+  }
+
   const mail = params.mail + "@catway.org";
   const mailData = await getMailData(mail);
   return (
