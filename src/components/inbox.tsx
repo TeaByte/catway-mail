@@ -22,7 +22,7 @@ export default async function Inbox({ inboxId, isParallel }: InboxProps) {
   const mailData = await getInbox(inboxId);
 
   return (
-    <section className="mx-4 mb-14 mt-6 flex flex-col items-center justify-center gap-6 lg:container lg:mx-auto">
+    <section className="mx-4 mb-14 flex flex-col items-center justify-center gap-6 lg:container lg:mx-auto">
       {mailData ? (
         <>
           <div className="flex w-full">
@@ -55,7 +55,7 @@ export default async function Inbox({ inboxId, isParallel }: InboxProps) {
           </div>
           <div className="flex w-full flex-col gap-1">
             <p className="text-sm font-semibold">Content:</p>
-            <div className="flex min-h-56 w-full flex-col items-center justify-center rounded border p-4">
+            <div className="trancate min-h-56 w-full truncate text-wrap rounded border p-4">
               <div
                 dangerouslySetInnerHTML={{
                   __html:

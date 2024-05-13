@@ -29,7 +29,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
     >
       <div className="flex flex-col gap-2">
         <Button
-          variant="outline"
+          variant="secondary"
           onClick={onDismiss}
           className="flex w-full gap-1 p-10 text-lg font-bold"
         >
