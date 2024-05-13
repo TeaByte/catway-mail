@@ -3,6 +3,8 @@ import "server-only";
 import { db } from "~/server/db";
 import type { MailData } from "~/types";
 
+const timeToExpire = new Date(new Date().getTime() + 48 * 60 * 60 * 1000);
+
 export async function getMailData(mailboxOwner: string) {
   const mailsInMailBox = await db.mailBox.findUnique({
     where: {
@@ -47,7 +49,6 @@ export async function getInbox(id: string) {
 }
 
 export async function __createMail(mailboxOwner: string, mailData: MailData) {
-  const expireAt = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   const mailbox = await db.mailBox.create({
     data: {
       mail: mailboxOwner,
@@ -57,7 +58,7 @@ export async function __createMail(mailboxOwner: string, mailData: MailData) {
     data: {
       ...mailData,
       mailboxOwner,
-      expireAt,
+      expireAt: timeToExpire,
     },
   });
 
@@ -65,7 +66,6 @@ export async function __createMail(mailboxOwner: string, mailData: MailData) {
 }
 
 export async function __updateMail(emailSlug: string, mailData: MailData) {
-  const expireAt = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   await db.mailBox.update({
     where: {
       mail: emailSlug,
@@ -74,7 +74,7 @@ export async function __updateMail(emailSlug: string, mailData: MailData) {
       mails: {
         create: {
           ...mailData,
-          expireAt,
+          expireAt: timeToExpire,
         },
       },
     },
