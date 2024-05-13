@@ -11,7 +11,7 @@ const font = Rubik({
 });
 
 export const metadata = {
-  title: "CatWay MAIL",
+  title: "Catway Mail",
   description:
     "Purring into your inbox with temporary addresses, ensuring your privacy pounces away without a trace.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],

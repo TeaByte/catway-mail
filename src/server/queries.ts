@@ -26,6 +26,16 @@ export async function getMailData(mailboxOwner: string) {
   return mailsInMailBox;
 }
 
+export async function getMailDataCount(mailboxOwner: string) {
+  const mailsInMailBox = await db.mail.count({
+    where: {
+      mailboxOwner: mailboxOwner,
+    },
+  });
+
+  return mailsInMailBox;
+}
+
 export async function getInbox(id: string) {
   const inbox = await db.mail.findUnique({
     where: {
