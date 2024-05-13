@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 import { getInbox } from "~/server/queries";
+
 import { Database } from "lucide-react";
 import { Button } from "./ui/button";
-import Link from "next/link";
 
 interface InboxProps {
   inboxId: string;
@@ -15,7 +17,13 @@ function getRemainingTime(expireAt: Date) {
   const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
-  return `Will expire in ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+  console.log(seconds + hours + seconds);
+
+  if (seconds + hours + seconds < 0) {
+    return `Will expire soon!`;
+  }
+
+  return `Willa expire in ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
 }
 
 export default async function Inbox({ inboxId, isParallel }: InboxProps) {
@@ -68,9 +76,12 @@ export default async function Inbox({ inboxId, isParallel }: InboxProps) {
           </div>
         </>
       ) : (
-        <div className="flex w-full flex-col items-center justify-center gap-2 text-lg font-semibold">
+        <div className="mt-4 flex w-full flex-col items-center justify-center gap-2 text-lg font-semibold">
           <Database className="h-24 w-24" />
           Inbox not found or expired!
+          <Link href="/">
+            <Button variant="outline">Back Home</Button>
+          </Link>
         </div>
       )}
     </section>
