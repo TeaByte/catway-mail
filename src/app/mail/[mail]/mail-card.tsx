@@ -20,7 +20,9 @@ export default function MailCard({ mailData }: { mailData: MailCardProps }) {
     >
       <div className="flex items-start justify-between">
         <div className="flex flex-col">
-          <span className="truncate font-bold">{mailData.senderEmail}</span>
+          <span className="max-w-[200px] truncate font-bold md:max-w-full">
+            {mailData.senderEmail}
+          </span>
           <span className="truncate text-sm">{mailData.senderName}</span>
         </div>
         <span className="text-sm font-semibold">

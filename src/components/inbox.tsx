@@ -25,7 +25,7 @@ export default async function Inbox({ inboxId, isParallel }: InboxProps) {
     <section className="mx-4 mb-14 flex flex-col items-center justify-center gap-6 lg:container lg:mx-auto">
       {mailData ? (
         <>
-          <div className="flex w-full">
+          <div className="mt-4 flex w-full">
             {!isParallel && (
               <div className="w-full">
                 <Link href={`/mail/${mailData.mailboxOwner.split("@")[0]}`}>
