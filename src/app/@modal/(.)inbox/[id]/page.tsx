@@ -8,7 +8,7 @@ export default function InboxPage({
 }) {
   return (
     <Modal>
-      <Inbox inboxId={inboxId} />
+      <Inbox inboxId={inboxId} isParallel={true} />
     </Modal>
   );
 }

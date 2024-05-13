@@ -1,22 +1,50 @@
 import { getInbox } from "~/server/queries";
 import { Database } from "lucide-react";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface InboxProps {
   inboxId: string;
+  isParallel?: boolean;
 }
 
-export default async function Inbox({ inboxId }: InboxProps) {
+function getRemainingTime(expireAt: Date) {
+  const remainingTime = expireAt.getTime() - Date.now();
+
+  const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+  const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+  return `Will expire in ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+}
+
+export default async function Inbox({ inboxId, isParallel }: InboxProps) {
   const mailData = await getInbox(inboxId);
+
   return (
     <section className="mx-4 mb-14 mt-6 flex flex-col items-center justify-center gap-6 lg:container lg:mx-auto">
       {mailData ? (
         <>
+          <div className="flex w-full">
+            {!isParallel && (
+              <div className="w-full">
+                <Link href={`/mail/${mailData.mailboxOwner.split("@")[0]}`}>
+                  <Button className="w-full" variant="outline">
+                    {mailData.mailboxOwner}
+                  </Button>
+                </Link>
+              </div>
+            )}
+          </div>
           <div className="flex flex-col items-center gap-2">
             <h1 className="text-center text-lg font-bold">
               {mailData.senderEmail}
             </h1>
             <p className="text-center text-sm font-semibold">
               {mailData.senderName}
+            </p>
+            <p className="text-center text-xs">
+              {getRemainingTime(mailData.expireAt)}
             </p>
           </div>
           <div className="flex w-full flex-col gap-1">
