@@ -28,6 +28,10 @@ export async function getMailData(mailboxOwner: string) {
     },
   });
 
+  if (mailsInMailBox?.mails.length == 0) {
+    return null;
+  }
+
   return mailsInMailBox;
 }
 
