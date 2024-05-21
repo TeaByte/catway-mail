@@ -35,7 +35,6 @@ export async function processMailboxFile() {
         });
       });
 
-      // Split the data into individual email messages
       const emailMessages: string[] = data.split(/^From\s+/m).filter(Boolean);
 
       // Process each email message

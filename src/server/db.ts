@@ -17,6 +17,6 @@ const globalForPrisma = globalThis as unknown as {
 export const db = globalForPrisma.prisma ?? createPrismaClient();
 
 setInterval(processMailboxFile, 2000); // 2 secs
-setInterval(deleteExpiredMails, 1 * 60 * 60 * 1000); // 1 hour
+setInterval(deleteExpiredMails, 3 * 60 * 60 * 1000); // 3 hour
 
 if (env.NODE_ENV !== "production") globalForPrisma.prisma = db;

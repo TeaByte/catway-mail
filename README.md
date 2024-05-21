@@ -22,11 +22,11 @@ To set up your own self-hosted temp mail service, follow these steps:
 3. **Cloudflare DNS Configuration:**
 
    Configure your Cloudflare DNS by adding the following records:
-   
+
    ```py
    # Add MX record to your DNS
    # MX     10    mail.your_domain.com
-   
+
    # Add A record to your DNS point to your server IP
    # A  0.0.0.0   mail.your_domain.com
    ```
@@ -48,7 +48,7 @@ To set up your own self-hosted temp mail service, follow these steps:
    ```
 
    In the `main.cf` file, add or edit the following lines:
-   
+
    ```conf
    myhostname = mail.your_domain.com
    mydestination = $myhostname, your_domain.com, localhost.localdomain, localhost, root
@@ -87,7 +87,7 @@ That's it!. if every thing works fine all mails will sent to `/var/mail/root`.
 6. **Run the Website/Database/Mailparser**
 
    ```sh
+   npm run db:push
    npm run dev
    # it will run at port 5005
    ```
-

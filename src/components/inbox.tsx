@@ -23,7 +23,7 @@ function getRemainingTime(expireAt: Date) {
     return `Will expire soon!`;
   }
 
-  return `Willa expire in ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+  return `Will expire in ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
 }
 
 export default async function Inbox({ inboxId, isParallel }: InboxProps) {
