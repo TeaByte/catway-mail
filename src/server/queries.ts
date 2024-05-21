@@ -3,7 +3,10 @@ import "server-only";
 import { db } from "~/server/db";
 import type { MailData } from "~/types";
 
-const timeToExpire = new Date(new Date().getTime() + 48 * 60 * 60 * 1000);
+function getExpireDate() {
+  const timeToExpire = new Date(new Date().getTime() + 48 * 60 * 60 * 1000);
+  return timeToExpire;
+}
 
 export async function getMailData(mailboxOwner: string) {
   const mailsInMailBox = await db.mailBox.findUnique({
@@ -58,7 +61,7 @@ export async function __createMail(mailboxOwner: string, mailData: MailData) {
     data: {
       ...mailData,
       mailboxOwner,
-      expireAt: timeToExpire,
+      expireAt: getExpireDate(),
     },
   });
 
@@ -74,7 +77,7 @@ export async function __updateMail(emailSlug: string, mailData: MailData) {
       mails: {
         create: {
           ...mailData,
-          expireAt: timeToExpire,
+          expireAt: getExpireDate(),
         },
       },
     },
